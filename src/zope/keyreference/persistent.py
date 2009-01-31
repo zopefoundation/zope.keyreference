@@ -21,7 +21,7 @@ from ZODB.interfaces import IConnection
 from ZODB.ConflictResolution import PersistentReference
 import zope.interface
 
-import zope.app.keyreference.interfaces
+import zope.keyreference.interfaces
 
 class KeyReferenceToPersistent(object):
     """An IKeyReference for persistent objects which is comparable.
@@ -29,7 +29,7 @@ class KeyReferenceToPersistent(object):
     These references compare by database name and _p_oids of the objects they
     reference.
     """
-    zope.interface.implements(zope.app.keyreference.interfaces.IKeyReference)
+    zope.interface.implements(zope.keyreference.interfaces.IKeyReference)
 
     key_type_id = 'zope.app.keyreference.persistent'
 
@@ -37,7 +37,7 @@ class KeyReferenceToPersistent(object):
         if not getattr(object, '_p_oid', None):
             connection = IConnection(object, None)
             if connection is None:
-                raise zope.app.keyreference.interfaces.NotYet(object)
+                raise zope.keyreference.interfaces.NotYet(object)
 
             connection.add(object)
 

@@ -17,13 +17,13 @@ $Id$
 """
 import zope.interface
 import zope.component
-import zope.app.keyreference.interfaces
+import zope.keyreference.interfaces
 
 class SimpleKeyReference(object):
     """An IReference for all objects. This implementation is *not* ZODB safe.
     """
     zope.component.adapts(zope.interface.Interface)
-    zope.interface.implements(zope.app.keyreference.interfaces.IKeyReference)
+    zope.interface.implements(zope.keyreference.interfaces.IKeyReference)
 
     key_type_id = 'zope.app.keyreference.simple'
 

@@ -2,8 +2,8 @@
 Key References for Persistent Objects
 =====================================
 
-`zope.app.keyreference.persistent.KeyReferenceToPersistent` provides an
-`zope.app.keyreference.interfaces.IKeyReference` reference for persistent
+`zope.keyreference.persistent.KeyReferenceToPersistent` provides an
+`zope.keyreference.interfaces.IKeyReference` reference for persistent
 objects.
 
 Let's look at an example. First, we'll create some persistent objects
@@ -24,7 +24,7 @@ in a database:
 
 Then we'll create some key references:
 
-    >>> from zope.app.keyreference.persistent import KeyReferenceToPersistent
+    >>> from zope.keyreference.persistent import KeyReferenceToPersistent
 
     >>> key1 = KeyReferenceToPersistent(root['ob1'])
     >>> key2 = KeyReferenceToPersistent(root['ob2'])
@@ -49,7 +49,7 @@ Key references should sort first on their key type and second on any
 type-specific information:
 
     >>> from zope.interface import implements
-    >>> from zope.app.keyreference.interfaces import IKeyReference
+    >>> from zope.keyreference.interfaces import IKeyReference
 
     >>> class DummyKeyReference(object):
     ...     implements(IKeyReference)
@@ -232,11 +232,11 @@ not.  Here are a few examples.
 Location-based connection adapter
 ---------------------------------
 
-The function `zope.app.keyreference.connectionOfPersistent` adapts
+The function `zope.keyreference.connectionOfPersistent` adapts
 objects to connections using a simple location-based heuristic. It
 checked to see if the object has a `__parent__` that has a connection:
 
-    >>> from zope.app.keyreference.persistent import connectionOfPersistent
+    >>> from zope.keyreference.persistent import connectionOfPersistent
     >>> ob3 = PersistentDict()
     >>> print connectionOfPersistent(ob3)
     None

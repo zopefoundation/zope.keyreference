@@ -11,7 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Setup for zope.app.keyreference package
+"""Setup for zope.keyreference package
 
 $Id$
 """
@@ -21,18 +21,18 @@ from setuptools import setup, find_packages
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-setup(name = 'zope.app.keyreference',
-      version = '3.5.0dev',
+setup(name = 'zope.keyreference',
+      version = '3.6.0dev',
       author='Zope Corporation and Contributors',
       author_email='zope-dev@zope.org',
       description='Key References',
       long_description=(
           read('README.txt')
           + '\n\n' +
-          'Detailed Dcoumentation\n' +
+          'Detailed Documentation\n' +
           '----------------------\n'
           + '\n\n' +
-          read('src', 'zope', 'app', 'keyreference', 'persistent.txt')
+          read('src', 'zope', 'keyreference', 'persistent.txt')
           + '\n\n' +
           read('CHANGES.txt')
           ),
@@ -47,11 +47,11 @@ setup(name = 'zope.app.keyreference',
           'Operating System :: OS Independent',
           'Topic :: Internet :: WWW/HTTP',
           'Framework :: Zope3'],
-      url='http://pypi.python.org/pypi/zope.app.keyreference',
+      url='http://pypi.python.org/pypi/zope.keyreference',
       license='ZPL 2.1',
       packages=find_packages('src'),
       package_dir = {'': 'src'},
-      namespace_packages=['zope', 'zope.app'],
+      namespace_packages=['zope'],
       extras_require={'test': ['zope.testing']},
       install_requires = ['setuptools',
                           'ZODB3',
