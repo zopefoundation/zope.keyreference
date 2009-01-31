@@ -1,0 +1,21 @@
+=======
+CHANGES
+=======
+
+3.5.0 (unreleased)
+------------------
+
+- Performance related change to the conflict resolution code in
+  ``zope.app.keyreference.persistent.KeyReferenceToPersistent.__cmp__``.
+
+- Added support for new `ZODB.ConflictResolution.PersistentReference` behavior
+  to persistent key references so that they can now, in many cases, allow
+  conflict resolution when they are used as keys or set members in ZODB
+  `BTrees` data structures.
+
+- Move zope.testing to the "test" extra require, because it's only needed for testing.
+
+3.4.0 (2007-10-24)
+------------------
+
+- Initial release independent of the main Zope tree.
