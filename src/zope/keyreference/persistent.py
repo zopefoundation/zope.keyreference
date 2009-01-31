@@ -113,3 +113,17 @@ def connectionOfPersistent(ob):
         if cur is None:
             return None
     return cur._p_jar
+
+# BBB: If zope.app.keyreference is not installed, we still want
+# old key references to be available. So fake a module to make
+# them unpickleable.
+try:
+    import zope.app.keyreference
+except ImportError:
+    import sys
+    from types import ModuleType as module
+    z_a_k = module('zope.app.keyreference')
+    sys.modules['zope.app.keyreference'] = z_a_k
+    z_a_k_p = module('zope.app.keyreference.persistent')
+    z_a_k_p.KeyReferenceToPersistent = KeyReferenceToPersistent
+    sys.modules['zope.app.keyreference.persistent'] = z_a_k_p

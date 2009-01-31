@@ -5,7 +5,9 @@ CHANGES
 3.6.1 (unreleased)
 ------------------
 
-- ...
+- Load keyreferences, pickled by old zope.app.keyreference even
+  if its not installed anymore (so don't break if one updates a
+  project that don't directly depends on zope.app.keyreference). 
 
 3.6.0 (2009-01-31)
 ------------------
