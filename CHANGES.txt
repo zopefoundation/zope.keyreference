@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-3.6.1 (unreleased)
+3.6.1 (2009-02-01)
 ------------------
 
 - Load keyreferences, pickled by old zope.app.keyreference even
