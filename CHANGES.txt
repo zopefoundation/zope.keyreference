@@ -2,7 +2,7 @@
 CHANGES
 =======
 
-3.6.2 (unreleased)
+3.6.2 (2009-09-15)
 ------------------
 
 - Made the tests pass with ZODB3.9, which changed the repr() of the persistent
