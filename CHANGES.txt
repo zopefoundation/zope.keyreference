@@ -5,7 +5,8 @@ CHANGES
 3.6.2 (unreleased)
 ------------------
 
-- ...
+- Made the tests pass with ZODB3.9, which changed the repr() of the persistent
+  classes.
 
 3.6.1 (2009-02-01)
 ------------------

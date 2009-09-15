@@ -113,7 +113,7 @@ yet:
     ... # doctest: +ELLIPSIS
     Traceback (most recent call last):
     ...
-    NotYet: <persistent.dict.PersistentDict object at ...>
+    NotYet: ...
 
 Note that we get a NotYet error. This indicates that we might be able
 to get a key reference later.
