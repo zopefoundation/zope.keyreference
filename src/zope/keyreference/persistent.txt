@@ -11,14 +11,14 @@ in a database:
 
     >>> from ZODB.tests.util import DB
     >>> import transaction
-    >>> from persistent.dict import PersistentDict
+    >>> from persistent.mapping import PersistentMapping
 
     >>> db = DB()
     >>> conn = db.open()
     >>> root = conn.root()
 
-    >>> root['ob1'] = PersistentDict()
-    >>> root['ob2'] = PersistentDict()
+    >>> root['ob1'] = PersistentMapping()
+    >>> root['ob2'] = PersistentMapping()
 
     >>> transaction.commit()
 
@@ -109,7 +109,7 @@ and that we can also call the keys to get the objects:
 We can't get the key reference for an object that hasn't been saved
 yet:
 
-    >>> KeyReferenceToPersistent(PersistentDict())
+    >>> KeyReferenceToPersistent(PersistentMapping())
     ... # doctest: +ELLIPSIS
     Traceback (most recent call last):
     ...
@@ -176,7 +176,7 @@ multidatabase references.  Here are a couple of examples.
     True
 
 This means that KeyReferenceToPersistent will often hinder conflict resolution
-for classes such as PersistentDict.
+for classes such as PersistentMapping.
 
 __cmp__ works unless one object is a multidatabase reference and the other is
 not.  Here are a few examples.
@@ -237,7 +237,7 @@ objects to connections using a simple location-based heuristic. It
 checked to see if the object has a `__parent__` that has a connection:
 
     >>> from zope.keyreference.persistent import connectionOfPersistent
-    >>> ob3 = PersistentDict()
+    >>> ob3 = PersistentMapping()
     >>> print connectionOfPersistent(ob3)
     None
 
