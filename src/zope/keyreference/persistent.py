@@ -14,8 +14,6 @@
 """KeyReference for persistent objects.
 
 Provides an IKeyReference adapter for persistent objects.
-
-$Id$
 """
 from ZODB.interfaces import IConnection
 from ZODB.ConflictResolution import PersistentReference

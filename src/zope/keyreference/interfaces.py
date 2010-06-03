@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Key-reference interfaces
-
-$Id$
 """
 import zope.interface
 from zope.schema import DottedName

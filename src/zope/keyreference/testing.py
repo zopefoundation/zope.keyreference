@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Testing components
-
-$Id$
 """
 import zope.interface
 import zope.component

@@ -12,8 +12,6 @@
 #
 ##############################################################################
 """Tests for the unique id utility.
-
-$Id$
 """
 import unittest
 from zope.testing import doctest
