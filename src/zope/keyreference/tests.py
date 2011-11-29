@@ -14,7 +14,7 @@
 """Tests for the unique id utility.
 """
 import unittest
-from zope.testing import doctest
+import doctest
 
 def test_multi_databases():
     """
