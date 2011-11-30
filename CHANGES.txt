@@ -2,10 +2,16 @@
 CHANGES
 =======
 
+3.6.4 (unreleased)
+------------------
+
+- Fix tests broken by removal of ``zope.testing`` from test dependencies:
+  avoid the ``ZODB3`` module that needs it.
+
 3.6.3 (2011-11-29)
 ------------------
 
-- Prefer the standard libraries doctest module to the one from zope.testing.
+- Prefer the standard libraries doctest module to the one from ``zope.testing``.
 
 3.6.2 (2009-09-15)
 ------------------

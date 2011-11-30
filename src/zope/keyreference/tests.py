@@ -18,7 +18,7 @@ import doctest
 
 def test_multi_databases():
     """
-    >>> from ZODB.tests.util import DB
+    >>> from ZODB.MappingStorage import DB
     >>> import transaction
     >>> from BTrees.OOBTree import OOBucket
 
