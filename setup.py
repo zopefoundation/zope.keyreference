@@ -25,7 +25,7 @@ def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 setup(name = 'zope.keyreference',
-      version='3.6.3',
+      version='3.6.4',
       author='Zope Foundation and Contributors',
       author_email='zope-dev@zope.org',
       description='Key References',
