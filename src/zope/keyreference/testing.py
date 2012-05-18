@@ -17,11 +17,11 @@ import zope.interface
 import zope.component
 import zope.keyreference.interfaces
 
+@zope.component.adapter(zope.interface.Interface)
+@zope.interface.implementer(zope.keyreference.interfaces.IKeyReference)
 class SimpleKeyReference(object):
     """An IReference for all objects. This implementation is *not* ZODB safe.
     """
-    zope.component.adapts(zope.interface.Interface)
-    zope.interface.implements(zope.keyreference.interfaces.IKeyReference)
 
     key_type_id = 'zope.app.keyreference.simple'
 

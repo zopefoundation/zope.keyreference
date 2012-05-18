@@ -48,11 +48,11 @@ Other key reference implementations are differed by their key type id.
 Key references should sort first on their key type and second on any
 type-specific information:
 
-    >>> from zope.interface import implements
+    >>> from zope.interface import implementer
     >>> from zope.keyreference.interfaces import IKeyReference
 
-    >>> class DummyKeyReference(object):
-    ...     implements(IKeyReference)
+    >>> @implementer(IKeyReference)
+    ... class DummyKeyReference(object):
     ...     key_type_id = 'zope.app.keyreference.object'
     ...     def __init__(self, obj):
     ...         self.object = obj

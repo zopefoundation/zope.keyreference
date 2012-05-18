@@ -21,13 +21,13 @@ import zope.interface
 
 import zope.keyreference.interfaces
 
+@zope.interface.implementer(zope.keyreference.interfaces.IKeyReference)
 class KeyReferenceToPersistent(object):
     """An IKeyReference for persistent objects which is comparable.
 
     These references compare by database name and _p_oids of the objects they
     reference.
     """
-    zope.interface.implements(zope.keyreference.interfaces.IKeyReference)
 
     key_type_id = 'zope.app.keyreference.persistent'
 
