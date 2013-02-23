@@ -57,7 +57,7 @@ class KeyReferenceToPersistent(object):
             oid = self.object._p_oid
         return hash((database_name, oid))
 
-    def __cmp__(self, other):
+    def _get_cmp_keys(self, other):
         if self.key_type_id == other.key_type_id:
             # While it makes subclassing this class inconvenient,
             # comparing the object's type is faster than doing an
@@ -91,9 +91,37 @@ class KeyReferenceToPersistent(object):
                 self_oid = self.object._p_oid
                 other_name = other.object._p_jar.db().database_name
                 other_oid = other.object._p_oid
-            return cmp((self_name, self_oid), (other_name, other_oid))
+            return (self_name, self_oid), (other_name, other_oid)
 
-        return cmp(self.key_type_id, other.key_type_id)
+        return self.key_type_id, other.key_type_id
+
+    # Py3: For Python 2 BBB.
+    def __cmp__(self, other):
+        return cmp(*self._get_cmp_keys(other))
+
+    def __eq__(self, other):
+        a, b = self._get_cmp_keys(other)
+        return a == b
+
+    def __lt__(self, other):
+        a, b = self._get_cmp_keys(other)
+        return a < b
+
+    def __ne__(self, other):
+        a, b = self._get_cmp_keys(other)
+        return a != b
+
+    def __gt__(self, other):
+        a, b = self._get_cmp_keys(other)
+        return a > b
+
+    def __le__(self, other):
+        a, b = self._get_cmp_keys(other)
+        return a <= b
+
+    def __ge__(self, other):
+        a, b = self._get_cmp_keys(other)
+        return a >= b
 
 
 @zope.interface.implementer(IConnection)

@@ -49,4 +49,24 @@ class IKeyReference(zope.interface.Interface):
 
     def __cmp__(ref):
         """Compare the reference to another reference.
+
+        BBB for Python 2.
         """
+
+    def __eq__(ref):
+        pass
+
+    def __lt__(ref):
+        pass
+
+    def __ne__(ref):
+        pass
+
+    def __gt__(ref):
+        pass
+
+    def __le__(ref):
+        pass
+
+    def __ge__(ref):
+        pass

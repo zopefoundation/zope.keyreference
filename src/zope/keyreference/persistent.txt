@@ -56,14 +56,34 @@ type-specific information:
     ...     key_type_id = 'zope.app.keyreference.object'
     ...     def __init__(self, obj):
     ...         self.object = obj
-    ...     def __cmp__(self, other):
+    ...     def _get_cmp_keys(self, other):
     ...          if self.key_type_id == other.key_type_id:
-    ...              return cmp(self.object, other.object)
-    ...          return cmp(self.key_type_id, other.key_type_id)
+    ...              return self.object, other.object
+    ...          return self.key_type_id, other.key_type_id
+    ...     def __cmp__(self, other):
+    ...         return cmp(*self._get_cmp_keys(other))
+    ...     def __eq__(self, other):
+    ...         a, b = self._get_cmp_keys(other)
+    ...         return a == b
+    ...     def __lt__(self, other):
+    ...         a, b = self._get_cmp_keys(other)
+    ...         return a < b
+    ...     def __ne__(self, other):
+    ...         a, b = self._get_cmp_keys(other)
+    ...         return a != b
+    ...     def __gt__(self, other):
+    ...         a, b = self._get_cmp_keys(other)
+    ...         return a > b
+    ...     def __le__(self, other):
+    ...         a, b = self._get_cmp_keys(other)
+    ...         return a <= b
+    ...     def __ge__(self, other):
+    ...         a, b = self._get_cmp_keys(other)
+    ...         return a >= b
 
-    >>> dummy_key1 = DummyKeyReference(object())
-    >>> dummy_key2 = DummyKeyReference(object())
-    >>> dummy_key3 = DummyKeyReference(object())
+    >>> dummy_key1 = DummyKeyReference(1)
+    >>> dummy_key2 = DummyKeyReference(2)
+    >>> dummy_key3 = DummyKeyReference(3)
 
     >>> keys = [key1, dummy_key1, dummy_key2, key2, dummy_key3]
     >>> keys.sort()
@@ -181,50 +201,53 @@ for classes such as PersistentMapping.
 __cmp__ works unless one object is a multidatabase reference and the other is
 not.  Here are a few examples.
 
+    >>> def cmp(a, b):
+    ...    return (a > b) - (a < b)
+
     >>> cmp(factory(PersistentReference(
-    ...         ('an oid', 'class metadata'))),
+    ...         (b'an oid', 'class metadata'))),
     ...     factory(PersistentReference(
-    ...         ('an oid', 'class metadata'))))
+    ...         (b'an oid', 'class metadata'))))
     0
 
     >>> cmp(factory(PersistentReference(
-    ...         ('an oid', 'class metadata'))),
+    ...         (b'an oid', 'class metadata'))),
     ...     factory(PersistentReference(
-    ...         ('another oid', 'class metadata'))))
+    ...         (b'another oid', 'class metadata'))))
     -1
 
-    >>> cmp(factory(PersistentReference('an oid')),
+    >>> cmp(factory(PersistentReference(b'an oid')),
     ...     factory(PersistentReference(
-    ...         ('an oid', 'class metadata'))))
+    ...         (b'an oid', 'class metadata'))))
     0
 
-    >>> cmp(factory(PersistentReference('an oid')),
+    >>> cmp(factory(PersistentReference(b'an oid')),
     ...     factory(PersistentReference(
-    ...         ('an oid', 'class metadata'))))
-    0
-
-    >>> cmp(factory(PersistentReference(
-    ...         ['m', ('a database', 'an oid', 'class metadata')])),
-    ...     factory(PersistentReference(
-    ...         ['m', ('a database', 'an oid', 'class metadata')])))
+    ...         (b'an oid', 'class metadata'))))
     0
 
     >>> cmp(factory(PersistentReference(
-    ...         ['m', ('a database', 'an oid', 'class metadata')])),
+    ...         ['m', ('a database', b'an oid', 'class metadata')])),
     ...     factory(PersistentReference(
-    ...         ['n', ('a database', 'an oid')])))
+    ...         ['m', ('a database', b'an oid', 'class metadata')])))
     0
 
     >>> cmp(factory(PersistentReference(
-    ...         ['m', ('a database', 'an oid', 'class metadata')])),
+    ...         ['m', ('a database', b'an oid', 'class metadata')])),
     ...     factory(PersistentReference(
-    ...         ['m', ('another database', 'an oid', 'class metadata')])))
+    ...         ['n', ('a database', b'an oid')])))
+    0
+
+    >>> cmp(factory(PersistentReference(
+    ...         ['m', ('a database', b'an oid', 'class metadata')])),
+    ...     factory(PersistentReference(
+    ...         ['m', ('another database', b'an oid', 'class metadata')])))
     -1
 
     >>> cmp(factory(PersistentReference(
-    ...         ['m', ('a database', 'an oid', 'class metadata')])),
+    ...         ['m', ('a database', b'an oid', 'class metadata')])),
     ...     factory(PersistentReference(
-    ...         ('an oid', 'class metadata'))))
+    ...         (b'an oid', 'class metadata'))))
     Traceback (most recent call last):
     ...
     ValueError: cannot sort reliably
@@ -238,7 +261,7 @@ checked to see if the object has a `__parent__` that has a connection:
 
     >>> from zope.keyreference.persistent import connectionOfPersistent
     >>> ob3 = PersistentMapping()
-    >>> print connectionOfPersistent(ob3)
+    >>> print(connectionOfPersistent(ob3))
     None
 
     >>> ob3.__parent__ = root2['ob1']

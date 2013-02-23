@@ -13,8 +13,17 @@
 ##############################################################################
 """Tests for the unique id utility.
 """
-import unittest
 import doctest
+import re
+import unittest
+from zope.testing import renormalizing
+
+checker = renormalizing.RENormalizing([
+    # Python 3 adds module name to exceptions.
+    (re.compile("zope.keyreference.interfaces.NotYet"),
+     r"NotYet"),
+    ])
+
 
 def test_multi_databases():
     """
@@ -50,7 +59,7 @@ def test_multi_databases():
 
 def test_suite():
     return unittest.TestSuite((
-        doctest.DocFileSuite('persistent.txt'),
+        doctest.DocFileSuite('persistent.txt', checker=checker),
         doctest.DocTestSuite(),
         ))
 
