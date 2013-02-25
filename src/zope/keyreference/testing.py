@@ -34,8 +34,36 @@ class SimpleKeyReference(object):
     def __hash__(self):
         return hash(self.object)
 
-    def __cmp__(self, other):
+    def _get_cmp_keys(self, other):
         if self.key_type_id == other.key_type_id:
-            return cmp(hash(self.object), hash(other))
+            return hash(self.object), hash(other)
 
-        return cmp(self.key_type_id, other.key_type_id)
+        return self.key_type_id, other.key_type_id
+
+    # Py3: For Python 2 BBB.
+    def __cmp__(self, other):
+        return cmp(*self._get_cmp_keys(other))
+
+    def __eq__(self, other):
+        a, b = self._get_cmp_keys(other)
+        return a == b
+
+    def __lt__(self, other):
+        a, b = self._get_cmp_keys(other)
+        return a < b
+
+    def __ne__(self, other):
+        a, b = self._get_cmp_keys(other)
+        return a != b
+
+    def __gt__(self, other):
+        a, b = self._get_cmp_keys(other)
+        return a > b
+
+    def __le__(self, other):
+        a, b = self._get_cmp_keys(other)
+        return a <= b
+
+    def __ge__(self, other):
+        a, b = self._get_cmp_keys(other)
+        return a >= b

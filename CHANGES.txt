@@ -5,7 +5,8 @@ CHANGES
 4.0.0a2 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Make sure that the ``SimpleKeyReference`` implementation (used for testing)
+  also implements rich comparison properly.
 
 
 4.0.0a1 (2013-02-22)
@@ -44,7 +45,7 @@ CHANGES
 
 - Load keyreferences, pickled by old zope.app.keyreference even
   if its not installed anymore (so don't break if one updates a
-  project that don't directly depends on zope.app.keyreference). 
+  project that don't directly depends on zope.app.keyreference).
 
 3.6.0 (2009-01-31)
 ------------------
