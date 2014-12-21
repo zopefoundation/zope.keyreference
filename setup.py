@@ -25,19 +25,19 @@ def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
 setup(name = 'zope.keyreference',
-      version='4.0.0a3.dev0',
+      version='4.0.0.dev0',
       author='Zope Foundation and Contributors',
       author_email='zope-dev@zope.org',
       description='Key References',
       long_description=(
-          read('README.txt')
+          read('README.rst')
           + '\n\n' +
           'Detailed Documentation\n' +
           '----------------------\n'
           + '\n\n' +
           read('src', 'zope', 'keyreference', 'persistent.txt')
           + '\n\n' +
-          read('CHANGES.txt')
+          read('CHANGES.rst')
           ),
       keywords = "zope3 key reference persistent",
       classifiers = [
