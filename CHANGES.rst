@@ -1,8 +1,7 @@
-=======
-CHANGES
+Changes
 =======
 
-4.1.0 (Unreleased)
+4.1.0 (2014-12-27)
 --------------------
 
 - Add support for PyPy (PyPy3 blocked on PyPy3-compatible ``zodbpickle``).
