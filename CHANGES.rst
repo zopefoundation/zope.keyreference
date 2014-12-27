@@ -11,28 +11,28 @@ CHANGES
 4.0.0 (2014-12-20)
 --------------------
 
-- Added support for testing on Travis.
+- Add support for testing on Travis.
 
 
 4.0.0a2 (2013-02-25)
 --------------------
 
-- Make sure that the ``SimpleKeyReference`` implementation (used for testing)
+- Ensure that the ``SimpleKeyReference`` implementation (used for testing)
   also implements rich comparison properly.
 
 
 4.0.0a1 (2013-02-22)
 --------------------
 
-- Added support for Python 3.3.
+- Add support for Python 3.3.
 
-- Replaced deprecated ``zope.component.adapts`` usage with equivalent
+- Replace deprecated ``zope.component.adapts`` usage with equivalent
   ``zope.component.adapter`` decorator.
 
-- Replaced deprecated ``zope.interface.implements`` usage with equivalent
+- Replace deprecated ``zope.interface.implements`` usage with equivalent
   ``zope.interface.implementer`` decorator.
 
-- Dropped support for Python 2.4 and 2.5.
+- Drop support for Python 2.4 and 2.5.
 
 
 3.6.4 (2011-11-30)
@@ -49,7 +49,7 @@ CHANGES
 3.6.2 (2009-09-15)
 ------------------
 
-- Made the tests pass with ZODB3.9, which changed the repr() of the persistent
+- Make the tests pass with ZODB3.9, which changed the repr() of the persistent
   classes.
 
 3.6.1 (2009-02-01)
