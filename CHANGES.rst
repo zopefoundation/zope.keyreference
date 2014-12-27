@@ -5,6 +5,8 @@ CHANGES
 4.1.0 (Unreleased)
 --------------------
 
+- Add support for PyPy (PyPy3 blocked on PyPy3-compatible ``zodbpickle``).
+
 - Add support for Python 3.4.
 
 
