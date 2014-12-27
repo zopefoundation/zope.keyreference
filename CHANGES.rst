@@ -2,10 +2,10 @@
 CHANGES
 =======
 
-4.0.1 (Unreleased)
+4.1.0 (Unreleased)
 --------------------
 
-- TBD
+- Add support for Python 3.4.
 
 
 4.0.0 (2014-12-20)
