@@ -2,8 +2,8 @@
 Key References for Persistent Objects
 =====================================
 
-`zope.keyreference.persistent.KeyReferenceToPersistent` provides an
-`zope.keyreference.interfaces.IKeyReference` reference for persistent
+:class:`~zope.keyreference.persistent.KeyReferenceToPersistent` provides an
+:class:`~zope.keyreference.interfaces.IKeyReference` reference for persistent
 objects.
 
 Let's look at an example. First, we'll create some persistent objects
@@ -139,10 +139,10 @@ Note that we get a NotYet error. This indicates that we might be able
 to get a key reference later.
 
 We can get references to unsaved objects if they have an adapter to
-`ZODB.interfaces.IConnection`.  The `add` method on the connection
+``ZODB.interfaces.IConnection``.  The ``add`` method on the connection
 will be used to give the object an object id, which is enough
 information to compute the reference.  To see this, we'll create an
-object that conforms to `IConnection` in a silly way:
+object that conforms to ``IConnection`` in a silly way:
 
     >>> import persistent
     >>> from ZODB.interfaces import IConnection
@@ -165,7 +165,7 @@ for KeyReferenceToPersistent.  First, it explains a subtlety of the class: it
 does not inherit from persistent.Persistent.  If it did, it would not be
 available for conflict resolution, just its PersistentReference stand-in.
 
-Second, it explains some of the code in the __hash__ and __cmp__
+Second, it explains some of the code in the ``__hash__`` and ``__cmp__``
 methods. These methods not only handle persistent.Persistent objects,
 but PersistentReference objects.  Without this behavior, objects, such
 as the classic ZODB BTrees, that use KeyReferenceToPersistent as keys or
@@ -173,7 +173,7 @@ set members will be unable to resolve conflicts.  Even with the special
 code, in some cases the KeyReferenceToPersistent will refuse to compare
 and hash during conflict resolution because it cannot reliably do so.
 
-__hash__ will work relatively rarely during conflict resolution: only for
+``__hash__`` will work relatively rarely during conflict resolution: only for
 multidatabase references.  Here are a couple of examples.
 
     >>> from ZODB.ConflictResolution import PersistentReference
@@ -198,7 +198,7 @@ multidatabase references.  Here are a couple of examples.
 This means that KeyReferenceToPersistent will often hinder conflict resolution
 for classes such as PersistentMapping.
 
-__cmp__ works unless one object is a multidatabase reference and the other is
+``__cmp__`` works unless one object is a multidatabase reference and the other is
 not.  Here are a few examples.
 
     >>> def cmp(a, b):
@@ -255,9 +255,9 @@ not.  Here are a few examples.
 Location-based connection adapter
 ---------------------------------
 
-The function `zope.keyreference.connectionOfPersistent` adapts
+The function :func:`zope.keyreference.persistent.connectionOfPersistent` adapts
 objects to connections using a simple location-based heuristic. It
-checked to see if the object has a `__parent__` that has a connection:
+checked to see if the object has a ``__parent__`` that has a connection:
 
     >>> from zope.keyreference.persistent import connectionOfPersistent
     >>> ob3 = PersistentMapping()
