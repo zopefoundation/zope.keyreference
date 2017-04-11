@@ -18,8 +18,10 @@ Provides an IKeyReference adapter for persistent objects.
 from ZODB.interfaces import IConnection
 from ZODB.ConflictResolution import PersistentReference
 import zope.interface
+import zope.security.proxy
 
 import zope.keyreference.interfaces
+
 
 @zope.interface.implementer(zope.keyreference.interfaces.IKeyReference)
 class KeyReferenceToPersistent(object):
@@ -66,12 +68,12 @@ class KeyReferenceToPersistent(object):
             # determine if we're in conflict resolution.
             if type(self.object) is PersistentReference:
                 # We are doing conflict resolution.
-                assert isinstance(other.object, PersistentReference), (
+                assert isinstance(other(), PersistentReference), (
                     'other object claims to be '
                     'zope.app.keyreference.persistent but, during conflict '
                     'resolution, object is not a PersistentReference')
                 self_name = self.object.database_name
-                other_name = other.object.database_name
+                other_name = other().database_name
                 if (self_name is None) ^ (other_name is None):
                     # one of the two database_names are None during conflict
                     # resolution.  At this time the database_name is
@@ -85,12 +87,13 @@ class KeyReferenceToPersistent(object):
                     # up.
                     raise ValueError('cannot sort reliably')
                 self_oid = self.object.oid
-                other_oid = other.object.oid
+                other_oid = other().oid
             else:
                 self_name = self.object._p_jar.db().database_name
                 self_oid = self.object._p_oid
-                other_name = other.object._p_jar.db().database_name
-                other_oid = other.object._p_oid
+                other_obj = zope.security.proxy.getObject(other())
+                other_name = other_obj._p_jar.db().database_name
+                other_oid = other_obj._p_oid
             return (self_name, self_oid), (other_name, other_oid)
 
         return self.key_type_id, other.key_type_id
