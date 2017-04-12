@@ -8,8 +8,6 @@ python:
     - 3.6
     - pypy
     - pypy3
-install:
-    - pip install .[test]
 script:
     - python setup.py -q test -q
 notifications:
