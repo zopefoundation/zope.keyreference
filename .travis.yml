@@ -9,8 +9,7 @@ python:
     - pypy
     - pypy3
 install:
-    - pip install .
-    - pip install zope.keyreference[test]
+    - pip install .[test]
 script:
     - python setup.py -q test -q
 notifications:
