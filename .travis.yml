@@ -9,7 +9,7 @@ python:
     - pypy
     - pypy3
 install:
-    - python setup.py install test
+    - bin/pip install -e .[test]
 script:
     - python setup.py -q test -q
 notifications:
