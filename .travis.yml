@@ -5,11 +5,11 @@ python:
     - 3.3
     - 3.4
     - 3.5
+    - 3.6
     - pypy
     - pypy3
 install:
-    - pip install .
-    - pip install zope.keyreference[test]
+    - pip install -e .[test]
 script:
     - python setup.py -q test -q
 notifications:
