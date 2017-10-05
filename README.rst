@@ -1,7 +1,7 @@
 ``zope.keyreference``
 =====================
 
-.. image:: https://travis-ci.org/zopefoundation/zope.keyreference.png?branch=master
+.. image:: https://travis-ci.org/zopefoundation/zope.keyreference.svg?branch=master
         :target: https://travis-ci.org/zopefoundation/zope.keyreference
 
 .. image:: https://readthedocs.org/projects/zopekeyreference/badge/?version=latest
