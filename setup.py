@@ -64,7 +64,10 @@ setup(
         "Topic :: Internet :: WWW/HTTP",
         "Framework :: Zope :: 3",
     ],
-    url="http://pypi.python.org/pypi/zope.keyreference",
+    url="https://github.com/zopefoundation/zope.keyreference",
+    project_urls={
+        "Documentation": "https://zopekeyreference.readthedocs.io/",
+    },
     license="ZPL 2.1",
     packages=find_packages("src"),
     package_dir={"": "src"},
