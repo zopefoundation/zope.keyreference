@@ -8,6 +8,9 @@ Changes
 
 - Drop support for Python 2.6.
 
+- Fix comparison of `KeyReferenceToPersistent` with a proxied
+  `KeyReferenceToPersistent`.
+
 
 4.1.0 (2014-12-27)
 --------------------
