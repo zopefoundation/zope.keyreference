@@ -27,6 +27,11 @@ def read(*rnames):
         return f.read()
 
 
+TESTS_REQUIRE = [
+    'zope.testing',
+    'zope.testrunner',
+]
+
 setup(
     name="zope.keyreference",
     version=read("version.txt").strip(),
@@ -67,7 +72,9 @@ setup(
     packages=find_packages("src"),
     package_dir={"": "src"},
     namespace_packages=["zope"],
-    extras_require={"test": ["zope.testing"]},
+    extras_require={
+        "test": TESTS_REQUIRE,
+    },
     install_requires=[
         "setuptools",
         "ZODB",
@@ -76,7 +83,7 @@ setup(
         "zope.interface",
         "zope.schema",
     ],
-    tests_require=["zope.testing"],
+    tests_require=TESTS_REQUIRE,
     test_suite="zope.keyreference.tests.test_suite",
     include_package_data=True,
     zip_safe=False,
