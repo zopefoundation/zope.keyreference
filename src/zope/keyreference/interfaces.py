@@ -27,17 +27,19 @@ class NotYet(Exception):
     (e.g. at the end of the transaction).
     """
 
+
 class IKeyReference(zope.interface.Interface):
     """A reference to an object (similar to a weak reference).
 
     The references are compared by their hashes.
     """
 
-    key_type_id = DottedName(title=_('Key Type Id'),
+    key_type_id = DottedName(
+        title=_('Key Type Id'),
         description=_('Key references should sort first '
-            'on their key type and second on any type-specific '
-            'information.')
-        )
+                      'on their key type and second on any type-specific '
+                      'information.')
+    )
 
     def __call__():
         """Get the object this reference is linking to.
@@ -54,19 +56,19 @@ class IKeyReference(zope.interface.Interface):
         """
 
     def __eq__(ref):
-        pass
+        "KeyReferences must be totally orderable."
 
     def __lt__(ref):
-        pass
+        "KeyReferences must be totally orderable."
 
     def __ne__(ref):
-        pass
+        "KeyReferences must be totally orderable."
 
     def __gt__(ref):
-        pass
+        "KeyReferences must be totally orderable."
 
     def __le__(ref):
-        pass
+        "KeyReferences must be totally orderable."
 
     def __ge__(ref):
-        pass
+        "KeyReferences must be totally orderable."
