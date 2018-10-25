@@ -36,11 +36,6 @@ setup(
     long_description=(
         read("README.rst")
         + "\n\n"
-        + "Detailed Documentation\n"
-        + "----------------------\n"
-        + "\n\n"
-        + read("src", "zope", "keyreference", "persistent.txt")
-        + "\n\n"
         + read("CHANGES.rst")
     ),
     keywords="zope3 key reference persistent",
