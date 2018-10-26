@@ -2,10 +2,13 @@
  Changes
 =========
 
-4.2.1 (unreleased)
+5.0.0 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Remove ``__cmp__`` methods. Since the implementation of the rich
+  comparison methods (``__eq__``, etc) in 4.0a1, the interpreter won't
+  call ``__cmp__``, even on Python 2. See `issue 10
+  <https://github.com/zopefoundation/zope.keyreference/issues/10>`_.
 
 
 4.2.0 (2018-10-26)

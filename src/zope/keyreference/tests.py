@@ -14,7 +14,6 @@
 """Tests for the unique id utility.
 """
 import doctest
-import re
 import unittest
 from zope.testing import renormalizing
 
@@ -41,13 +40,13 @@ class MockPersistent(object):
         return hash(self._p_oid)
 
 
-class TestKeyReferenceToPersistent(unittest.TestCase):
+class TestSimpleKeyReference(unittest.TestCase):
 
     def makeOne(self, obj):
-        from zope.keyreference.persistent import KeyReferenceToPersistent
-        return KeyReferenceToPersistent(obj)
+        from zope.keyreference.testing import SimpleKeyReference
+        return SimpleKeyReference(obj)
 
-    def test__cmp__(self):
+    def test_comparisons(self):
 
         persistent = MockPersistent()
 
@@ -55,29 +54,25 @@ class TestKeyReferenceToPersistent(unittest.TestCase):
         eq2 = self.makeOne(persistent)
 
         self.assertEqual(eq1, eq2)
-        self.assertEqual(0, eq1.__cmp__(eq2))
-        self.assertEqual(0, eq1.__cmp__(eq1))
-        self.assertEqual(0, eq2.__cmp__(eq1))
+        self.assertEqual(eq2, eq1)
 
         # But if they have different key_type_id, they
         # only compare based on that.
         eq2.key_type_id = 'aaa'
         self.assertNotEqual(eq1, eq2)
+        self.assertNotEqual(eq2, eq1)
 
         persistent_gt = MockPersistent()
         persistent_gt._p_oid = 2
 
         gt = self.makeOne(persistent_gt)
-        __traceback_info__ = hash(gt), hash(eq1), hash(persistent._p_oid)
+
         self.assertGreater(gt, eq1)
         self.assertGreaterEqual(gt, eq1)
         self.assertNotEqual(gt, eq1)
-        self.assertEqual(1, gt.__cmp__(eq1))
 
         self.assertLess(eq1, gt)
         self.assertLessEqual(eq1, gt)
-        self.assertEqual(-1, eq1.__cmp__(gt))
-
 
     def test__call__(self):
         persistent = MockPersistent()
@@ -85,55 +80,54 @@ class TestKeyReferenceToPersistent(unittest.TestCase):
 
         self.assertIs(persistent, obj())
 
-class TestSimpleKeyReference(TestKeyReferenceToPersistent):
+class TestKeyReferenceToPersistent(TestSimpleKeyReference):
 
     def makeOne(self, obj):
-        from zope.keyreference.testing import SimpleKeyReference
-        return SimpleKeyReference(obj)
+        from zope.keyreference.persistent import KeyReferenceToPersistent
+        return KeyReferenceToPersistent(obj)
 
 
-checker = renormalizing.RENormalizing([
-    # Python 3 adds module name to exceptions.
-    (re.compile("zope.keyreference.interfaces.NotYet"),
-     r"NotYet"),
-    ])
+    def test_multi_databases(self):
+        from ZODB.MappingStorage import DB
+        import transaction
+        from BTrees.OOBTree import OOBucket
 
+        databases = {}
 
-def test_multi_databases():
-    """
-    >>> from ZODB.MappingStorage import DB
-    >>> import transaction
-    >>> from BTrees.OOBTree import OOBucket
+        db1 = DB(databases=databases, database_name='1')
+        db2 = DB(databases=databases, database_name='2')
 
-    >>> databases = {}
+        conn1 = db1.open()
+        conn1.root()['ob'] = OOBucket()
 
-    >>> db1 = DB(databases=databases, database_name='1')
-    >>> db2 = DB(databases=databases, database_name='2')
+        conn2 = conn1.get_connection('2')
+        self.assertEqual(conn2.db(), db2)
+        conn2.root()['ob'] = OOBucket()
 
-    >>> conn1 = db1.open()
-    >>> conn1.root()['ob'] = OOBucket()
+        self.assertEqual(conn1.root()['ob']._p_oid,
+                         conn2.root()['ob']._p_oid)
 
-    >>> conn2 = conn1.get_connection('2')
-    >>> conn2.root()['ob'] = OOBucket()
+        transaction.commit()
 
-    >>> conn1.root()['ob']._p_oid == conn2.root()['ob']._p_oid
-    True
+        key1 = self.makeOne(conn1.root()['ob'])
+        key2 = self.makeOne(conn2.root()['ob'])
 
-    >>> transaction.commit()
+        self.assertNotEqual(key1, key2)
+        self.assertGreater(key2, key1)
+        self.assertNotEqual(hash(key1), hash(key2))
 
-    >>> from zope.keyreference.persistent import KeyReferenceToPersistent
-
-    >>> key1 = KeyReferenceToPersistent(conn1.root()['ob'])
-    >>> key2 = KeyReferenceToPersistent(conn2.root()['ob'])
-
-    >>> key1 != key2, key2 > key1, hash(key1) != hash(key2)
-    (True, True, True)
-
-"""
 
 def test_suite():
+    doctest_flags = (
+        doctest.NORMALIZE_WHITESPACE
+        | doctest.ELLIPSIS
+        | renormalizing.IGNORE_EXCEPTION_MODULE_IN_PYTHON2
+    )
     return unittest.TestSuite((
-        doctest.DocFileSuite('persistent.txt', checker=checker),
-        doctest.DocTestSuite(),
+        doctest.DocFileSuite(
+            'persistent.txt',
+            optionflags=doctest_flags,
+            checker=renormalizing.RENormalizing(),
+        ),
         unittest.defaultTestLoader.loadTestsFromName(__name__),
     ))
