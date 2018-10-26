@@ -96,8 +96,16 @@ class KeyReferenceToPersistent(object):
         return self.key_type_id, other.key_type_id
 
     # Py3: For Python 2 BBB.
+    # If we implement all the rich comparison operations, though, this is
+    # never actually called.
     def __cmp__(self, other):
-        return cmp(*self._get_cmp_keys(other))
+        my_keys, other_keys = self._get_cmp_keys(other)
+        if my_keys == other_keys:
+            return 0
+        if my_keys > other_keys:
+            return 1
+        return -1
+
 
     def __eq__(self, other):
         a, b = self._get_cmp_keys(other)
