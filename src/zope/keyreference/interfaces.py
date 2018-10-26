@@ -49,12 +49,6 @@ class IKeyReference(zope.interface.Interface):
         """Get a unique identifier of the referenced object.
         """
 
-    def __cmp__(ref):
-        """Compare the reference to another reference.
-
-        BBB for Python 2.
-        """
-
     def __eq__(ref):
         "KeyReferences must be totally orderable."
 

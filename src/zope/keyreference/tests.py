@@ -47,7 +47,7 @@ class TestKeyReferenceToPersistent(unittest.TestCase):
         from zope.keyreference.persistent import KeyReferenceToPersistent
         return KeyReferenceToPersistent(obj)
 
-    def test__cmp__(self):
+    def test_comparisons(self):
 
         persistent = MockPersistent()
 
@@ -55,29 +55,25 @@ class TestKeyReferenceToPersistent(unittest.TestCase):
         eq2 = self.makeOne(persistent)
 
         self.assertEqual(eq1, eq2)
-        self.assertEqual(0, eq1.__cmp__(eq2))
-        self.assertEqual(0, eq1.__cmp__(eq1))
-        self.assertEqual(0, eq2.__cmp__(eq1))
+        self.assertEqual(eq2, eq1)
 
         # But if they have different key_type_id, they
         # only compare based on that.
         eq2.key_type_id = 'aaa'
         self.assertNotEqual(eq1, eq2)
+        self.assertNotEqual(eq2, eq1)
 
         persistent_gt = MockPersistent()
         persistent_gt._p_oid = 2
 
         gt = self.makeOne(persistent_gt)
-        __traceback_info__ = hash(gt), hash(eq1), hash(persistent._p_oid)
+
         self.assertGreater(gt, eq1)
         self.assertGreaterEqual(gt, eq1)
         self.assertNotEqual(gt, eq1)
-        self.assertEqual(1, gt.__cmp__(eq1))
 
         self.assertLess(eq1, gt)
         self.assertLessEqual(eq1, gt)
-        self.assertEqual(-1, eq1.__cmp__(gt))
-
 
     def test__call__(self):
         persistent = MockPersistent()
@@ -130,6 +126,7 @@ def test_multi_databases():
     (True, True, True)
 
 """
+
 
 def test_suite():
     return unittest.TestSuite((
