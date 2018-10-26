@@ -9,3 +9,8 @@ include .coveragerc
 recursive-include src *
 
 global-exclude *.pyc
+
+# added by check_manifest.py
+recursive-include doc *.py
+recursive-include doc *.rst
+recursive-include doc Makefile
