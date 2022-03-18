@@ -10,6 +10,10 @@
   call ``__cmp__``, even on Python 2. See `issue 10
   <https://github.com/zopefoundation/zope.keyreference/issues/10>`_.
 
+- Add support for Python 3.8, 3.9, and 3.10.
+
+- Drop support for Python 3.4.
+
 
 4.2.0 (2018-10-26)
 ==================

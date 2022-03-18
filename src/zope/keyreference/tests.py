@@ -80,12 +80,12 @@ class TestSimpleKeyReference(unittest.TestCase):
 
         self.assertIs(persistent, obj())
 
+
 class TestKeyReferenceToPersistent(TestSimpleKeyReference):
 
     def makeOne(self, obj):
         from zope.keyreference.persistent import KeyReferenceToPersistent
         return KeyReferenceToPersistent(obj)
-
 
     def test_multi_databases(self):
         from ZODB.MappingStorage import DB

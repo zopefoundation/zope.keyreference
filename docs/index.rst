@@ -28,7 +28,7 @@ zope.keyreference is hosted at GitHub:
 Project URLs
 ============
 
-* http://pypi.python.org/pypi/zope.keyreference       (PyPI entry and downloads)
+* https://pypi.org/project/zope.keyreference/       (PyPI entry and downloads)
 
 
 ====================
