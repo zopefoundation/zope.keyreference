@@ -10,8 +10,8 @@
    :target: https://pypi.org/project/zope.keyreference/
    :alt: Supported Python versions
 
-.. image:: https://travis-ci.com/zopefoundation/zope.keyreference.svg?branch=master
-   :target: https://travis-ci.com/zopefoundation/zope.keyreference
+.. image:: https://github.com/zopefoundation/zope.keyreference/actions/workflows/tests.yml/badge.svg
+   :target: https://github.com/zopefoundation/zope.keyreference/actions/workflows/tests.yml
    :alt: Build Status
 
 .. image:: https://coveralls.io/repos/github/zopefoundation/zope.keyreference/badge.svg
