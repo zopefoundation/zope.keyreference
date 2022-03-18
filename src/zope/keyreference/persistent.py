@@ -65,7 +65,7 @@ class KeyReferenceToPersistent(object):
             # isinstance check.  The intent of using type instead
             # of isinstance is to avoid loading state just to
             # determine if we're in conflict resolution.
-            if type(self.object) is PersistentReference:
+            if isinstance(self.object, PersistentReference):
                 # We are doing conflict resolution.
                 assert isinstance(other.object, PersistentReference), (
                     'other object claims to be '
