@@ -2,7 +2,7 @@
  Changes
 =========
 
-5.0.0 (unreleased)
+5.0.0 (2022-03-25)
 ==================
 
 - Remove ``__cmp__`` methods. Since the implementation of the rich
