@@ -15,9 +15,9 @@
 
 Provides an IKeyReference adapter for persistent objects.
 """
-from ZODB.interfaces import IConnection
-from ZODB.ConflictResolution import PersistentReference
 import zope.interface
+from ZODB.ConflictResolution import PersistentReference
+from ZODB.interfaces import IConnection
 
 import zope.keyreference.interfaces
 

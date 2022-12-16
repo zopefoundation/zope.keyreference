@@ -15,6 +15,7 @@
 """
 import doctest
 import unittest
+
 from zope.testing import renormalizing
 
 
@@ -88,9 +89,9 @@ class TestKeyReferenceToPersistent(TestSimpleKeyReference):
         return KeyReferenceToPersistent(obj)
 
     def test_multi_databases(self):
-        from ZODB.MappingStorage import DB
         import transaction
         from BTrees.OOBTree import OOBucket
+        from ZODB.MappingStorage import DB
 
         databases = {}
 

@@ -14,8 +14,9 @@
 """Key-reference interfaces
 """
 import zope.interface
-from zope.schema import DottedName
 from zope.i18nmessageid import MessageFactory
+from zope.schema import DottedName
+
 
 _ = MessageFactory('zope')
 
