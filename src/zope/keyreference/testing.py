@@ -15,8 +15,9 @@
 Testing components.
 """
 
-import zope.interface
 import zope.component
+import zope.interface
+
 import zope.keyreference.interfaces
 
 
