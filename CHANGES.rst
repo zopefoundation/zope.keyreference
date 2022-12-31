@@ -9,6 +9,8 @@
 
 - Add support for Python 3.11.
 
+- Make the tests compatible with ``zope.testing >= 5``.
+
 
 5.0.0 (2022-03-25)
 ==================

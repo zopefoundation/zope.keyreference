@@ -23,7 +23,7 @@ import zope.keyreference.interfaces
 
 @zope.component.adapter(zope.interface.Interface)
 @zope.interface.implementer(zope.keyreference.interfaces.IKeyReference)
-class SimpleKeyReference(object):
+class SimpleKeyReference:
     """An IReference for all objects. This implementation is *not*
     ZODB safe.
 

@@ -16,14 +16,12 @@
 import doctest
 import unittest
 
-from zope.testing import renormalizing
 
-
-class MockDatabase(object):
+class MockDatabase:
     database_name = ''
 
 
-class MockJar(object):
+class MockJar:
 
     def __init__(self):
         self._db = MockDatabase()
@@ -32,7 +30,7 @@ class MockJar(object):
         return self._db
 
 
-class MockPersistent(object):
+class MockPersistent:
     _p_oid = 1
     _p_jar = MockJar()
 
@@ -122,13 +120,11 @@ def test_suite():
     doctest_flags = (
         doctest.NORMALIZE_WHITESPACE
         | doctest.ELLIPSIS
-        | renormalizing.IGNORE_EXCEPTION_MODULE_IN_PYTHON2
     )
     return unittest.TestSuite((
         doctest.DocFileSuite(
             'persistent.txt',
             optionflags=doctest_flags,
-            checker=renormalizing.RENormalizing(),
         ),
         unittest.defaultTestLoader.loadTestsFromName(__name__),
     ))
