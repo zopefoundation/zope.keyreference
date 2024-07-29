@@ -90,8 +90,6 @@ setup(
         "zope.interface",
         "zope.schema",
     ],
-    tests_require=TESTS_REQUIRE,
-    test_suite="zope.keyreference.tests.test_suite",
     include_package_data=True,
     zip_safe=False,
 )
