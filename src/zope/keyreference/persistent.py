@@ -143,7 +143,7 @@ def connectionOfPersistent(ob):
 # them unpickleable.
 try:
     import zope.app.keyreference
-except ImportError:
+except ModuleNotFoundError:
     import sys
     from types import ModuleType as module
     z_a_k = module('zope.app.keyreference')
