@@ -38,7 +38,7 @@ setup(
     name="zope.keyreference",
     version=read("version.txt").strip(),
     author="Zope Foundation and Contributors",
-    author_email="zope-dev@zope.org",
+    author_email="zope-dev@zope.dev",
     description="Key References",
     long_description=(
         read("README.rst")
@@ -53,11 +53,11 @@ setup(
         "License :: OSI Approved :: Zope Public License",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
         "Natural Language :: English",
@@ -69,11 +69,11 @@ setup(
     project_urls={
         "Documentation": "https://zopekeyreference.readthedocs.io/",
     },
-    license="ZPL 2.1",
+    license="ZPL-2.1",
     packages=find_packages("src"),
     package_dir={"": "src"},
     namespace_packages=["zope"],
-    python_requires='>=3.7',
+    python_requires='>=3.9',
     extras_require={
         "test": TESTS_REQUIRE,
         "docs": {
