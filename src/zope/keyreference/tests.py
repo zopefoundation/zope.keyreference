@@ -79,6 +79,28 @@ class TestSimpleKeyReference(unittest.TestCase):
 
         self.assertIs(persistent, obj())
 
+    def test_comparison_with_unrelated_object(self):
+        # Comparing a key reference to something that isn't a key
+        # reference at all (and therefore has no key_type_id) used to
+        # raise an AttributeError instead of following the usual
+        # Python rules for unsupported comparisons.
+        persistent = MockPersistent()
+        ref = self.makeOne(persistent)
+
+        self.assertFalse(ref == 'not a key reference')
+        self.assertTrue(ref != 'not a key reference')
+        self.assertNotIn(ref, ['not a key reference'])
+        self.assertIn(ref, ['not a key reference', ref])
+
+        for op in (
+            lambda a, b: a < b,
+            lambda a, b: a > b,
+            lambda a, b: a <= b,
+            lambda a, b: a >= b,
+        ):
+            with self.assertRaises(TypeError):
+                op(ref, 'not a key reference')
+
 
 class TestKeyReferenceToPersistent(TestSimpleKeyReference):
 

@@ -5,7 +5,10 @@
 7.1 (unreleased)
 ================
 
-- Nothing changed yet.
+- Fix ``KeyReferenceToPersistent`` and ``SimpleKeyReference`` comparison
+  operators raising ``AttributeError`` instead of returning
+  ``NotImplemented`` when compared against an object that is not a key
+  reference (for example ``key_ref == "some string"``).
 
 
 7.0 (2025-09-12)

@@ -47,25 +47,43 @@ class SimpleKeyReference:
         return self.key_type_id, other.key_type_id
 
     def __eq__(self, other):
-        a, b = self._get_cmp_keys(other)
+        try:
+            a, b = self._get_cmp_keys(other)
+        except AttributeError:
+            return NotImplemented
         return a == b
 
     def __lt__(self, other):
-        a, b = self._get_cmp_keys(other)
+        try:
+            a, b = self._get_cmp_keys(other)
+        except AttributeError:
+            return NotImplemented
         return a < b
 
     def __ne__(self, other):
-        a, b = self._get_cmp_keys(other)
+        try:
+            a, b = self._get_cmp_keys(other)
+        except AttributeError:
+            return NotImplemented
         return a != b
 
     def __gt__(self, other):
-        a, b = self._get_cmp_keys(other)
+        try:
+            a, b = self._get_cmp_keys(other)
+        except AttributeError:
+            return NotImplemented
         return a > b
 
     def __le__(self, other):
-        a, b = self._get_cmp_keys(other)
+        try:
+            a, b = self._get_cmp_keys(other)
+        except AttributeError:
+            return NotImplemented
         return a <= b
 
     def __ge__(self, other):
-        a, b = self._get_cmp_keys(other)
+        try:
+            a, b = self._get_cmp_keys(other)
+        except AttributeError:
+            return NotImplemented
         return a >= b
