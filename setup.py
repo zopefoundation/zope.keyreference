@@ -72,11 +72,11 @@ setup(
     python_requires='>=3.11',
     extras_require={
         "test": TESTS_REQUIRE,
-        "docs": {
+        "docs": [
             "Sphinx",
             "repoze.sphinx.autointerface",
             "sphinx_rtd_theme",
-        }
+        ]
     },
     install_requires=[
         "setuptools",
