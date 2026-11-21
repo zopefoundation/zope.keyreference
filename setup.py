@@ -35,7 +35,7 @@ TESTS_REQUIRE = [
 
 setup(
     name="zope.keyreference",
-    version=read("version.txt").strip(),
+    version='7.1.dev0',
     author="Zope Foundation and Contributors",
     author_email="zope-dev@zope.dev",
     description="Key References",
