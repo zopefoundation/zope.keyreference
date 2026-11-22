@@ -7,6 +7,63 @@ requires = [
 ]
 build-backend = "setuptools.build_meta"
 
+
+[project]
+name = "zope.keyreference"
+version = "7.1.dev0"
+description = "Key References"
+license = "ZPL-2.1"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Web Environment",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Topic :: Internet :: WWW/HTTP",
+    "Framework :: Zope :: 3",
+]
+dynamic = ["readme"]
+requires-python = ">=3.11"
+authors = [
+    {name = "Zope Foundation and contributors",email = "zope-dev@zope.dev"},
+]
+maintainers = [
+    {name = "Plone Foundation and contributors",email = "zope-dev@zope.dev"},
+]
+dependencies = [
+    "setuptools",
+    "ZODB",
+    "zope.component",
+    "zope.i18nmessageid",
+    "zope.interface",
+    "zope.schema",
+]
+keywords = ["zope3", "key", "reference", "persistent"]
+
+[project.optional-dependencies]
+test = [
+    "zope.testing",
+    "zope.testrunner >= 6.4",
+]
+docs = [
+    "Sphinx",
+    "repoze.sphinx.autointerface",
+    "sphinx_rtd_theme",
+]
+
+[project.urls]
+Documentation = "https://zopekeyreference.readthedocs.io/"
+Source = "https://github.com/zopefoundation/zope.keyreference"
+
 [tool.coverage.run]
 branch = true
 source = ["zope.keyreference"]
@@ -29,3 +86,6 @@ exclude_lines = [
 
 [tool.coverage.html]
 directory = "parts/htmlcov"
+
+[tool.setuptools.dynamic]
+readme = {file = ["README.rst", "CHANGES.rst"]}
