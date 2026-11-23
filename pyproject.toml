@@ -7,7 +7,6 @@ requires = [
 ]
 build-backend = "setuptools.build_meta"
 
-
 [project]
 name = "zope.keyreference"
 version = "7.1.dev0"
@@ -40,7 +39,6 @@ maintainers = [
     {name = "Plone Foundation and contributors",email = "zope-dev@zope.dev"},
 ]
 dependencies = [
-    "setuptools",
     "ZODB",
     "zope.component",
     "zope.i18nmessageid",
@@ -89,3 +87,8 @@ directory = "parts/htmlcov"
 
 [tool.setuptools.dynamic]
 readme = {file = ["README.rst", "CHANGES.rst"]}
+
+[tool.zest-releaser]
+create-wheel = false
+extra-message = ""
+upload-pypi = false
